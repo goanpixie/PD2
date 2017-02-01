@@ -1,26 +1,26 @@
-<h1>Editing <%= @products.name%></h1>
+<h1>Editing <%= @product.name%></h1>
 
-<form action="/products/<%= @products.id %>" method="post">
-	<input type="hidden" name="_method" value="patch">
-<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
 
-  <select name="category">
+<form action="/products/<%= @product.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <select name="product[category]" id="Category">
     <% @categories.each do |category| %>
-      <% if(category.name == @products.category.name) %>
+      <% if(category.name == @product.category.name) %>
       <option selected="select" value="<%= category.id %>"><%= category.name %></option>
       <% else %>
       <option value="<%= category.id %>"><%= category.name %></option>
       <% end %>
     <% end %>
   </select>
-  
-	<input type="string" name="name" value="<%= @products.name%>">
-	<input type="text" name="description" value="<%= @products.description%>">
-	<input type="float" name="pricing" value="<%= @products.pricing%>">
-	<input type="submit" value="Update">
-
-
+  <label for="Name">Name:</label>
+  <input type="text" name="product[name]" id="Name" value="<%= @product.name %>">
+  <label for="Description">Description:</label>
+  <input type="text" name="product[description]" id="Description" value="<%= @product.description %>">
+  <label for="Pricing">Price:</label>
+  <input type="number" name="product[pricing]" id="Pricing" value="<%= @product.pricing %>">
+  <input type="submit" value="Update">
 </form>
 
-	<a href="/products/<%= @products.id%>"><strong> Show </strong></a>
+	<a href="/products/<%= @product.id%>"><strong> Show </strong></a>
 	<%= button_to "Go Back", {:controller =>"products", :action => "index" }, :method=> :get %>
