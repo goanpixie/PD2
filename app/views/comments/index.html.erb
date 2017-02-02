@@ -1,19 +1,22 @@
 
-<h1>Your comments:</h1>
+
+
+<h1>All Comments</h1>
 
 <table>
-
-	<tr>
-		<th>Comments</td>
-		<td>Product</td>
-	</tr>
-<% @comments.each do |a|%>
-	<tr>
-
-		<td><%= a.comment %></td>
-		<td><%= a.product_id %></td>
-
-	</tr>
-<% end %>
+  <thead>
+    <tr>
+      <td>Comments</td>
+      <td>Products</td>
+    </tr>
+  </thead>
+  <tbody>
+  <% @comments.each do |comment| %>
+    <tr>
+      <td><%= comment.comment %></td>
+      <td><%= comment.product_id%></td>
+    </tr>
+  <% end %>
+  </tbody>
 
 </table>
